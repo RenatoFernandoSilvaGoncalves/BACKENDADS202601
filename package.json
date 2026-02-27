@@ -1,0 +1,28 @@
+{
+  "name": "backendads202601",
+  "version": "1.0.0",
+  "description": "API para gerenciamento de cursos educacionais",
+  "keywords": [
+    "MVC",
+    "REST",
+    "HTTP",
+    "BACKEND",
+    "API"
+  ],
+  "homepage": "https://github.com/RenatoFernandoSilvaGoncalves/BACKENDADS202601#readme",
+  "bugs": {
+    "url": "https://github.com/RenatoFernandoSilvaGoncalves/BACKENDADS202601/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RenatoFernandoSilvaGoncalves/BACKENDADS202601.git"
+  },
+  "license": "ISC",
+  "author": "Renato Gonçalves",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node index.js"
+  }
+}
