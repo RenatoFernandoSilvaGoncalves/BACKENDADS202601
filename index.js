@@ -10,9 +10,8 @@ const cliente_atual = new Cliente(1, "123.456.789-00",
                                     "Telefone 1", 
                                     "Email 1");
 
-console.log(cliente_atual.toString());
-
-cliente_atual.cidade = new Cidade(2, "Sao Paulo", "SP");
-
-
-console.log(cliente_atual.toString());
+cliente_atual.consultar("Renato")
+.then((lista) => {
+    for (const cliente of lista) console.log(cliente.toString());
+})
+.catch((erro) => console.log(erro.message));

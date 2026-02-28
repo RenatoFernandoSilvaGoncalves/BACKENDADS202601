@@ -35,4 +35,21 @@ export default class Cidade{
     toString(){
         return `${this.#nome}/${this.#uf}`;
     }
+
+    async gravar(){
+        //gravar no banco de dados
+    }
+
+    async atualizar(){
+        //atualizar no banco de dados
+    }
+
+    async excluir(){
+        //excluir no banco de dados
+    }
+
+    async consultar(){
+        //consultar no banco de dados
+        return "";
+    }
 }

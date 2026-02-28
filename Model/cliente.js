@@ -1,3 +1,4 @@
+import ClienteDB from "../DB/clienteDB.js";
 export default class Cliente{
     //definir atributos privados 
     #id
@@ -79,5 +80,29 @@ export default class Cliente{
                 CPF: ${this.#cpf}
                 Cidade: ${this.#cidade}
             `;
+    }
+
+    async gravar(){
+        //gravar no banco de dados
+        const clienteDB = new ClienteDB();
+        await clienteDB.gravar(this);
+    }
+
+    async editar(){
+        //atualizar no banco de dados
+        const clienteDB = new ClienteDB();
+        await clienteDB.editar(this);
+    }
+
+    async excluir(){
+        //excluir no banco de dados
+        const clienteDB = new ClienteDB();
+        await clienteDB.excluir(this);
+    }
+
+    async consultar(termo){
+        //consultar no banco de dados
+        const clienteDB = new ClienteDB();
+        return await clienteDB.consultar(termo);
     }
 }
