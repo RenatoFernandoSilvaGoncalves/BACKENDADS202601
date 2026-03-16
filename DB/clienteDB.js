@@ -26,9 +26,7 @@ export default class ClienteDB{
 
     async editar(cliente){
         if (cliente instanceof Cliente){
-            const sql = `UPDATE SET cliente cli_cpf = ?, cli_nome = ?, cli_endereco = ?, 
-                                            cli_bairro =?, cid_id =?, cli_telefone=?, cli_email=? 
-                         WHERE cli_id = ?`;
+            const sql = `UPDATE cliente SET cli_cpf = ?, cli_nome = ?, cli_endereco = ?, cli_bairro =?, cid_id =?, cli_telefone=?, cli_email=? WHERE cli_id = ?`;
             const parametros = [cliente.cpf,
                                 cliente.nome,
                                 cliente.endereco,
@@ -58,19 +56,20 @@ export default class ClienteDB{
         //consulta verificará se termo é um número ou nome
         let sql = "";
         let parametros = [];
-        if (isNaN(Number(termo))){
+        if (!isNaN(Number(termo)) && Number(termo) > 0){
+            //consulta por código
+            sql = `SELECT * FROM cliente as cli
+                         LEFT JOIN cidade cid ON cid.cid_id = cli.cid_id
+                         WHERE cli.cli_id = ?`;
+            parametros = [termo];
+        }
+        else{
             //consulta por nome
             sql = `SELECT * FROM cliente as cli
                          LEFT JOIN cidade cid ON cid.cid_id = cli.cid_id
                          WHERE cli.cli_nome LIKE ?`;
             parametros = [`%${termo}%`];
-        }
-        else{
-            //consulta por código
-            sql = `SELECT * FROM cliente as cli
-                         LEFTJOIN cidade cid ON cid.cid_id = cli.cid_id
-                         WHERE cli.cli_id = ?`;
-            parametros = [termo];
+            
         }
         
         const conexao = await obterConexao();

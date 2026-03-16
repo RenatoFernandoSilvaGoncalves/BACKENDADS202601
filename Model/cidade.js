@@ -52,4 +52,13 @@ export default class Cidade{
         //consultar no banco de dados
         return "";
     }
+
+    //override no método toJSON()
+    toJSON(){
+        return {
+            "id": this.#id,
+            "nome": this.#nome,
+            "uf": this.#uf
+        }
+    }
 }

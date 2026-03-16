@@ -105,4 +105,17 @@ export default class Cliente{
         const clienteDB = new ClienteDB();
         return await clienteDB.consultar(termo);
     }
+
+    toJSON(){
+        return {
+            "id": this.#id,
+            "cpf": this.#cpf,
+            "nome": this.#nome,
+            "endereco": this.#endereco,
+            "bairro": this.#bairro,
+            "cidade": this.#cidade,
+            "telefone": this.#telefone,
+            "email": this.#email
+        }
+    }
 }

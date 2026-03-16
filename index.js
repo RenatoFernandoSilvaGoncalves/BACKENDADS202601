@@ -1,17 +1,14 @@
-import Cliente from "./Model/cliente.js";
-import Cidade from "./Model/cidade.js";
+import express from 'express';
+import rotaCliente from './routes/rotaCliente.js';
 
-const cidade = new Cidade(1, "Presidente Prudente", "SP");
+const localhost = '0.0.0.0';
+const port = 4000;
 
-const cliente_atual = new Cliente(1, "123.456.789-00", 
-                                    "Renato Goncalves", 
-                                    "Rua 1", "Bairro 1", 
-                                    cidade, 
-                                    "Telefone 1", 
-                                    "Email 1");
+const app = express();
+app.use(express.json()); //permite que o express entenda o json
 
-cliente_atual.consultar("Renato")
-.then((lista) => {
-    for (const cliente of lista) console.log(cliente.toString());
-})
-.catch((erro) => console.log(erro.message));
+app.use("/cliente", rotaCliente);
+//app.use("/cidade", rotaCidade);
+
+
+app.listen(port, localhost, () => console.log(`API escutando na porta ${port}`));
